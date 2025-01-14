@@ -9,4 +9,12 @@ file(GLOB COMMON_SRC
 
         ${CMAKE_SOURCE_DIR}/src/common/storage.h
         ${CMAKE_SOURCE_DIR}/src/common/storage.cc
+
+        ${CMAKE_SOURCE_DIR}/3thrd/SingleApplication/SingleApplication
+
+        ${CMAKE_SOURCE_DIR}/3thrd/SingleApplication/singleapplication.h
+        ${CMAKE_SOURCE_DIR}/3thrd/SingleApplication/singleapplication.cpp
+
+        ${CMAKE_SOURCE_DIR}/3thrd/SingleApplication/singleapplication_p.h
+        ${CMAKE_SOURCE_DIR}/3thrd/SingleApplication/singleapplication_p.cpp
 )

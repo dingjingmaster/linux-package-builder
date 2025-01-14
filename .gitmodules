@@ -4,3 +4,6 @@
 [submodule "macros"]
 	path = 3thrd/macros
 	url = https://github.com/dingjingmaster/macros.git
+[submodule "single-application"]
+	path = 3thrd/SingleApplication
+	url = https://github.com/dingjingmaster/SingleApplication.git

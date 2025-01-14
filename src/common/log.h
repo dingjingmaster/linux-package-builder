@@ -14,7 +14,7 @@
 #ifndef CLIBRARY_LOG_H
 #define CLIBRARY_LOG_H
 
-#include "macros/macros.h"
+#include "../3thrd/macros/macros.h"
 
 C_BEGIN_EXTERN_C
 

@@ -7,7 +7,7 @@
 
 #include "../common/log.h"
 #include "../common/qlog.h"
-#include "SingleApplication/SingleApplication"
+#include "../3thrd/SingleApplication/SingleApplication"
 
 
 static inline void creat_new_process()

@@ -5,13 +5,16 @@
 #ifndef lpb_DAEMON_H
 #define lpb_DAEMON_H
 #include <QObject>
+#include "SingleApplication/singleapplication.h"
 
 
-class Daemon final : public QObject
+class Daemon final : public SingleApplication
 {
     Q_OBJECT
 public:
-    explicit Daemon(QObject* parent=nullptr);
+    explicit Daemon(int argc, char* argv[], QObject* parent=nullptr);
+
+private:
 
 };
 

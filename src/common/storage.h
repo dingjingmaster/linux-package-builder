@@ -9,6 +9,8 @@
 #include <QString>
 #include <QVariant>
 
+#include "macros/macros.h"
+
 
 class StoragePrivate;
 class Storage final : private QObject
@@ -16,6 +18,15 @@ class Storage final : private QObject
     Q_OBJECT
 public:
     static Storage* getInstance();
+
+    void setTcpPort(cuint32 port);
+    cuint32 getTcpPort() const;
+
+    void setUdpPort(cuint32 port);
+    cuint32 getUdpPort() const;
+
+    void setUseProxy(bool useProxy);
+    bool getUseProxy() const;
 
 private:
     explicit Storage(QObject* parent=nullptr);

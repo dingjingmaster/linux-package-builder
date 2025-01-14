@@ -4,6 +4,15 @@
 
 #include "daemon.h"
 
-Daemon::Daemon(QObject* parent)
+#include "src/common/defines.h"
+#include "src/common/log.h"
+#include "src/common/storage.h"
+
+
+Daemon::Daemon(int argc, char* argv[], QObject* parent)
+    : SingleApplication(argc, argv, false, System | SecondaryNotification)
 {
+
 }
+
+

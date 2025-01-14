@@ -5,9 +5,9 @@
 #include <unistd.h>
 #include <QTextCodec>
 
+#include "daemon.h"
 #include "../common/log.h"
 #include "../common/qlog.h"
-#include "../3thrd/SingleApplication/SingleApplication"
 
 
 static inline void creat_new_process()
@@ -34,15 +34,14 @@ int main(int argc, char* argv[])
 {
     creat_new_process();
 
-    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-
     signal(SIGPIPE, SIG_IGN);
 
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+
     C_LOG_INFO("daemon start...");
-
-    SingleApplication app(argc, argv);
-
     qInstallMessageHandler(c_qlog_handler);
+
+    Daemon app(argc, argv);
 
     return SingleApplication::exec();
 }

@@ -9,10 +9,7 @@
 #include "src/common/storage.h"
 
 
-Daemon::Daemon(int argc, char* argv[], QObject* parent)
-    : SingleApplication(argc, argv, false, System | SecondaryNotification)
+Daemon::Daemon(int argc, char * argv[], QObject * parent)
+	: SingleApplication(argc, argv, false, System | SecondaryNotification)
 {
-
 }
-
-

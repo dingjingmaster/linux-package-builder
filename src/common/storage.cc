@@ -16,137 +16,138 @@
 class StoragePrivate
 {
 #define CONFIG_FILE             INSTALL_DIR"/lpb.conf"
-public:
-    ~StoragePrivate();
-    explicit StoragePrivate(Storage* other);
 
-    QVariant getConfigValue(const QString& group, const QString& key) const;
-    void setConfigValue(const QString& group, const QString& key, const QVariant& value) const;
+public:
+	~StoragePrivate();
+	explicit StoragePrivate(Storage * other);
+
+	QVariant getConfigValue(const QString& group, const QString& key) const;
+	void setConfigValue(const QString& group, const QString& key, const QVariant& value) const;
 
 protected:
-    void initConfigureValue();
+	void initConfigureValue();
 
 private:
-    Storage*                    q_ptr;
-    QSettings*                  mSettings = nullptr;
-    Q_DECLARE_PUBLIC(Storage);
+	Storage * q_ptr;
+	QSettings * mSettings = nullptr;
+	Q_DECLARE_PUBLIC(Storage);
 };
 
-Storage* Storage::gInstance = nullptr;
+Storage * Storage::gInstance = nullptr;
 
 StoragePrivate::~StoragePrivate()
 {
-    q_ptr = nullptr;
-    delete mSettings;
+	q_ptr = nullptr;
+	delete mSettings;
 }
 
-StoragePrivate::StoragePrivate(Storage* other)
-    : q_ptr(other), mSettings(new QSettings(CONFIG_FILE, QSettings::IniFormat))
+StoragePrivate::StoragePrivate(Storage * other)
+	: q_ptr(other), mSettings(new QSettings(CONFIG_FILE, QSettings::IniFormat))
 {
-    if (!QFile::exists(CONFIG_FILE)) {
-        qInfo() << "Create configure file: " << CONFIG_FILE;
-        QFile file(CONFIG_FILE);
-        file.open(QIODevice::NewOnly);
-        file.flush();
-        file.close();
+	if (!QFile::exists(CONFIG_FILE)) {
+		qInfo() << "Create configure file: " << CONFIG_FILE;
+		QFile file(CONFIG_FILE);
+		file.open(QIODevice::NewOnly);
+		file.flush();
+		file.close();
 
-        initConfigureValue();
-    }
+		initConfigureValue();
+	}
 }
 
 QVariant StoragePrivate::getConfigValue(const QString& group, const QString& key) const
 {
-    mSettings->sync();
-    mSettings->beginGroup(group);
-    auto val = mSettings->value(key);
-    mSettings->endGroup();
-    mSettings->sync();
+	mSettings->sync();
+	mSettings->beginGroup(group);
+	auto val = mSettings->value(key);
+	mSettings->endGroup();
+	mSettings->sync();
 
-    return val;
+	return val;
 }
 
 void StoragePrivate::setConfigValue(const QString& group, const QString& key, const QVariant& value) const
 {
-    mSettings->sync();
-    mSettings->beginGroup(group);
-    mSettings->setValue(key, value);
-    mSettings->endGroup();
-    mSettings->sync();
+	mSettings->sync();
+	mSettings->beginGroup(group);
+	mSettings->setValue(key, value);
+	mSettings->endGroup();
+	mSettings->sync();
 }
 
 void StoragePrivate::initConfigureValue()
 {
-    Q_Q(Storage);
+	Q_Q(Storage);
 
-    q->setTcpPort(TCP_SERVER_PORT);
-    q->setUdpPort(TCP_SERVER_PORT);
-    q->setUseProxy(false);
+	q->setTcpPort(TCP_SERVER_PORT);
+	q->setUdpPort(TCP_SERVER_PORT);
+	q->setUseProxy(false);
 }
 
-Storage * Storage::getInstance()
+Storage* Storage::getInstance()
 {
-    static bool inited = false;
+	static bool inited = false;
 
-    if (!inited) {
-        static QMutex locker;
-        locker.lock();
-        if (!gInstance) {
-            gInstance = new Storage();
-        }
-        locker.unlock();
-    }
+	if (!inited) {
+		static QMutex locker;
+		locker.lock();
+		if (!gInstance) {
+			gInstance = new Storage();
+		}
+		locker.unlock();
+	}
 
-    return gInstance;
+	return gInstance;
 }
 
 void Storage::setTcpPort(cuint32 port)
 {
-    Q_D(Storage);
+	Q_D(Storage);
 
-    d->setConfigValue("TcpServer", "port", port);
+	d->setConfigValue("TcpServer", "port", port);
 }
 
 cuint32 Storage::getTcpPort() const
 {
-    Q_D(const Storage);
+	Q_D(const Storage);
 
-    return d->getConfigValue("TcpServer", "port").toUInt();
+	return d->getConfigValue("TcpServer", "port").toUInt();
 }
 
 void Storage::setUdpPort(cuint32 port)
 {
-    Q_D(Storage);
+	Q_D(Storage);
 
-    d->setConfigValue("UdpServer", "port", port);
+	d->setConfigValue("UdpServer", "port", port);
 }
 
 cuint32 Storage::getUdpPort() const
 {
-    Q_D(const Storage);
+	Q_D(const Storage);
 
-    return d->getConfigValue("UdpServer", "port").toUInt();
+	return d->getConfigValue("UdpServer", "port").toUInt();
 }
 
 void Storage::setUseProxy(bool useProxy)
 {
-    Q_D(Storage);
+	Q_D(Storage);
 
-    d->setConfigValue("TcpServer", "useProxy", useProxy);
+	d->setConfigValue("TcpServer", "useProxy", useProxy);
 }
 
 bool Storage::getUseProxy() const
 {
-    Q_D(const Storage);
+	Q_D(const Storage);
 
-    return d->getConfigValue("TcpServer", "useProxy").toBool();
+	return d->getConfigValue("TcpServer", "useProxy").toBool();
 }
 
-Storage::Storage(QObject* parent)
-    : QObject(parent), d_ptr(new StoragePrivate(this))
+Storage::Storage(QObject * parent)
+	: QObject(parent), d_ptr(new StoragePrivate(this))
 {
 }
 
 Storage::~Storage()
 {
-    delete d_ptr;
+	delete d_ptr;
 }

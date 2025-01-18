@@ -7,12 +7,11 @@
 #include "../3thrd/macros/macros.h"
 
 C_BEGIN_EXTERN_C
-
 typedef enum
 {
-    IPC_TYPE_NONE                           = 0,
+	IPC_TYPE_NONE = 0,
 
-    IPC_TYPE_NUM,
+	IPC_TYPE_NUM,
 } RpcType;
 
 /**
@@ -20,9 +19,9 @@ typedef enum
  */
 typedef struct __attribute__((packed)) _RpcMessage
 {
-    unsigned int        type;
-    unsigned long       dataLen;
-    char                data[];
+	unsigned int type;
+	unsigned long dataLen;
+	char data[];
 } RpcMessage;
 
 C_END_EXTERN_C

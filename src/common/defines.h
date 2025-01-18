@@ -5,6 +5,6 @@
 #ifndef lpb_DEFINES_H
 #define lpb_DEFINES_H
 
-#define TCP_SERVER_PORT                 6666
+#define TCP_SERVER_PORT						6666
 
 #endif // lpb_DEFINES_H

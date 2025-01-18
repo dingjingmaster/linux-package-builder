@@ -10,12 +10,12 @@
 
 class Daemon final : public SingleApplication
 {
-    Q_OBJECT
+	Q_OBJECT
+
 public:
-    explicit Daemon(int argc, char* argv[], QObject* parent=nullptr);
+	explicit Daemon(int argc, char * argv[], QObject * parent = nullptr);
 
 private:
-
 };
 
 

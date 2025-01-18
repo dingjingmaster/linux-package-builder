@@ -1,4 +1,3 @@
-
 /*
  * Copyright © 2024 <dingjing@live.cn>
  *
@@ -144,8 +143,8 @@ C_STMT_START { \
  */
 typedef enum
 {
-    C_LOG_TYPE_FILE = 0,
-    C_LOG_TYPE_CONSOLE,
+	C_LOG_TYPE_FILE = 0,
+	C_LOG_TYPE_CONSOLE,
 } CLogType;
 
 /**
@@ -153,12 +152,12 @@ typedef enum
  */
 typedef enum
 {
-    C_LOG_LEVEL_ERROR       = 0,
-    C_LOG_LEVEL_CRIT        = 1,
-    C_LOG_LEVEL_WARNING     = 2,
-    C_LOG_LEVEL_INFO        = 3,
-    C_LOG_LEVEL_DEBUG       = 4,
-    C_LOG_LEVEL_VERB        = 5,
+	C_LOG_LEVEL_ERROR = 0,
+	C_LOG_LEVEL_CRIT = 1,
+	C_LOG_LEVEL_WARNING = 2,
+	C_LOG_LEVEL_INFO = 3,
+	C_LOG_LEVEL_DEBUG = 4,
+	C_LOG_LEVEL_VERB = 5,
 } CLogLevel;
 
 /**
@@ -174,32 +173,32 @@ typedef enum
  *
  * @return 成功: 0; 失败: -1
  */
-bool c_log_init (CLogLevel level, cuint64 logSize, const cchar* dir, const cchar* prefix, const cchar* suffix, bool hasTime);
+bool c_log_init(CLogLevel level, cuint64 logSize, const cchar * dir, const cchar * prefix, const cchar * suffix, bool hasTime);
 
 /**
  * 销毁 log 参数
  */
-void c_log_destroy (void);
+void c_log_destroy(void);
 
 /**
  * @brief 输出日志到文件
  */
-void c_log_print (CLogLevel level, const cchar* tag, const cchar* file, int line, const cchar* func, const cchar* fmt, ...);
+void c_log_print(CLogLevel level, const cchar * tag, const cchar * file, int line, const cchar * func, const cchar * fmt, ...);
 
 /**
  * 输出日志到控制台
  */
-void c_log_print_console (CLogLevel level, const cchar* tag, const cchar* file, int line, const cchar* func, const cchar* fmt, ...);
+void c_log_print_console(CLogLevel level, const cchar * tag, const cchar * file, int line, const cchar * func, const cchar * fmt, ...);
 
 /**
  * 输出一行内容到文件，所见即所得，无任何附加信息（行末换行符号除外）
  */
-void c_log_raw(CLogLevel level, const cchar* fmt, ...);
+void c_log_raw(CLogLevel level, const cchar * fmt, ...);
 
 /**
  * @brief 是否完成初始化
  */
-bool c_log_is_inited ();
+bool c_log_is_inited();
 
 C_END_EXTERN_C
 

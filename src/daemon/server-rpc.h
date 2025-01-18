@@ -8,21 +8,22 @@
 
 
 class ServerRPCPrivate;
+
 class ServerRPC final : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
+
 public:
-    static ServerRPC* getInstance();
+	static ServerRPC* getInstance();
 
 private:
-    explicit ServerRPC(QObject* parent=nullptr);
-
+	explicit ServerRPC(QObject * parent = nullptr);
 
 private:
-    static ServerRPC*               gInstance;
-    ServerRPCPrivate*               d_ptr;
+	static ServerRPC * gInstance;
+	ServerRPCPrivate * d_ptr;
 
-    Q_DECLARE_PRIVATE(ServerRPC);
+	Q_DECLARE_PRIVATE(ServerRPC);
 };
 
 

@@ -26,7 +26,7 @@
 #define C_LOG_LEVEL    C_LOG_LEVEL_INFO
 #endif
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #define C_QLOG_INIT_IF_NOT_INIT \
 { \
     if (G_UNLIKELY(!(0 != c_log_is_inited()))) { \
@@ -35,7 +35,7 @@
     } \
 };
 
-void c_qlog_handler (QtMsgType type, const QMessageLogContext &context, const QString &msg);
+void c_qlog_handler(QtMsgType type, const QMessageLogContext& context, const QString& msg);
 
 #elif QT_VERSION >= QT_VERSION_CHECK(4,0,0)
 #define C_QLOG_INIT_IF_NOT_INIT \

@@ -13,29 +13,31 @@
 
 
 class StoragePrivate;
+
 class Storage final : private QObject
 {
-    Q_OBJECT
+	Q_OBJECT
+
 public:
-    static Storage* getInstance();
+	static Storage* getInstance();
 
-    void setTcpPort(cuint32 port);
-    cuint32 getTcpPort() const;
+	void setTcpPort(cuint32 port);
+	cuint32 getTcpPort() const;
 
-    void setUdpPort(cuint32 port);
-    cuint32 getUdpPort() const;
+	void setUdpPort(cuint32 port);
+	cuint32 getUdpPort() const;
 
-    void setUseProxy(bool useProxy);
-    bool getUseProxy() const;
-
-private:
-    explicit Storage(QObject* parent=nullptr);
-    ~Storage() override;
+	void setUseProxy(bool useProxy);
+	bool getUseProxy() const;
 
 private:
-    StoragePrivate*             d_ptr;
-    static Storage*             gInstance;
-    Q_DECLARE_PRIVATE(Storage);
+	explicit Storage(QObject * parent = nullptr);
+	~Storage() override;
+
+private:
+	StoragePrivate * d_ptr;
+	static Storage * gInstance;
+	Q_DECLARE_PRIVATE(Storage);
 };
 
 
